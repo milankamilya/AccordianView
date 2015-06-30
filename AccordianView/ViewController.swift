@@ -58,7 +58,7 @@ extension ViewController : MKAccordianViewDelegate {
         
         // Title Label
         var titleLabel : UILabel = UILabel(frame: CGRectMake(50, 0, CGRectGetWidth(view.bounds) - 120, CGRectGetHeight(view.bounds)))
-        titleLabel.text = "Section \(section)"
+        titleLabel.text = "Process no: \(section)"
         titleLabel.textColor = UIColor.whiteColor()
         view.addSubview(titleLabel)
         
@@ -92,7 +92,7 @@ extension ViewController : MKAccordianViewDatasource {
         
         // You can assign cell.selectedBackgroundView also for selected mode
         
-        cell?.textLabel?.text = "Row \(indexPath.row)"
+        cell?.textLabel?.text = "subProcess no: \(indexPath.row)"
         return cell!
     }
     

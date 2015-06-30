@@ -19,14 +19,6 @@ import Foundation
 // MARK: - MKAccordianViewDelegate
 @objc protocol MKAccordianViewDelegate : NSObjectProtocol {
     
-    /*!
-    Description
-    
-    :param: accordianView accordianView description
-    :param: indexPath     indexPath description
-    
-    :returns: return value description
-    */
     optional func accordianView(accordianView: MKAccordianView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     optional func accordianView(accordianView: MKAccordianView, heightForHeaderInSection section: Int) -> CGFloat
     optional func accordianView(accordianView: MKAccordianView, heightForFooterInSection section: Int) -> CGFloat

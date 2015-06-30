@@ -8,11 +8,12 @@
 
 import UIKit
 
+
+// MARK: - ViewController Main Definition
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         var accordianView : MKAccordianView = MKAccordianView(frame: CGRectMake(0, 22, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)));
         accordianView.delegate = self;
@@ -29,6 +30,7 @@ class ViewController: UIViewController {
  
 }
 
+// MARK: - Implemention of MKAccordianViewDelegate method
 extension ViewController : MKAccordianViewDelegate {
     
     func accordianView(accordianView: MKAccordianView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -65,6 +67,7 @@ extension ViewController : MKAccordianViewDelegate {
     }
 }
 
+// MARK: - Implemention of MKAccordianViewDatasource method
 extension ViewController : MKAccordianViewDatasource {
     
     func numberOfSectionsInAccordianView(accordianView: MKAccordianView) -> Int {

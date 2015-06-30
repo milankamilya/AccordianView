@@ -13,7 +13,7 @@
 		8C54EC661B4130FD00EBC56B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C54EC651B4130FD00EBC56B /* Images.xcassets */; };
 		8C54EC691B4130FD00EBC56B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C54EC671B4130FD00EBC56B /* LaunchScreen.xib */; };
 		8C54EC751B4130FD00EBC56B /* AccordianViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54EC741B4130FD00EBC56B /* AccordianViewTests.swift */; };
-		8C54EC811B41313400EBC56B /* MKAccordianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54EC801B41313400EBC56B /* MKAccordianView.swift */; };
+		8C54EC811B41313400EBC56B /* MKAccordionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54EC801B41313400EBC56B /* MKAccordionView.swift */; };
 		8C54EC911B41749E00EBC56B /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C54EC8C1B41749E00EBC56B /* close.png */; };
 		8C54EC921B41749E00EBC56B /* open.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C54EC8D1B41749E00EBC56B /* open.png */; };
 		8C54EC931B41749E00EBC56B /* lightGrayBarWithBlueStripe.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C54EC8E1B41749E00EBC56B /* lightGrayBarWithBlueStripe.png */; };
@@ -42,7 +42,7 @@
 		8C54EC6E1B4130FD00EBC56B /* AccordianViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccordianViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C54EC731B4130FD00EBC56B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C54EC741B4130FD00EBC56B /* AccordianViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccordianViewTests.swift; sourceTree = "<group>"; };
-		8C54EC801B41313400EBC56B /* MKAccordianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKAccordianView.swift; sourceTree = "<group>"; };
+		8C54EC801B41313400EBC56B /* MKAccordionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKAccordionView.swift; sourceTree = "<group>"; };
 		8C54EC8C1B41749E00EBC56B /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		8C54EC8D1B41749E00EBC56B /* open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open.png; sourceTree = "<group>"; };
 		8C54EC8E1B41749E00EBC56B /* lightGrayBarWithBlueStripe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightGrayBarWithBlueStripe.png; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 		8C54EC7F1B41312C00EBC56B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8C54EC801B41313400EBC56B /* MKAccordianView.swift */,
+				8C54EC801B41313400EBC56B /* MKAccordionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 			files = (
 				8C54EC611B4130FD00EBC56B /* ViewController.swift in Sources */,
 				8C54EC5F1B4130FD00EBC56B /* AppDelegate.swift in Sources */,
-				8C54EC811B41313400EBC56B /* MKAccordianView.swift in Sources */,
+				8C54EC811B41313400EBC56B /* MKAccordionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

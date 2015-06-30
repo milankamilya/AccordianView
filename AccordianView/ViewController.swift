@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  AccordianView
+//  AccordionView
 //
 //  Created by Milan Kamilya on 29/06/15.
 //  Copyright (c) 2015 Milan Kamilya. All rights reserved.
@@ -15,10 +15,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var accordianView : MKAccordianView = MKAccordianView(frame: CGRectMake(0, 22, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)));
-        accordianView.delegate = self;
-        accordianView.dataSource = self;
-        view.addSubview(accordianView);
+        var accordionView : MKAccordionView = MKAccordionView(frame: CGRectMake(0, 22, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)));
+        accordionView.delegate = self;
+        accordionView.dataSource = self;
+        view.addSubview(accordionView);
         
     }
 
@@ -30,20 +30,20 @@ class ViewController: UIViewController {
  
 }
 
-// MARK: - Implemention of MKAccordianViewDelegate method
-extension ViewController : MKAccordianViewDelegate {
+// MARK: - Implemention of MKAccordionViewDelegate method
+extension ViewController : MKAccordionViewDelegate {
     
-    func accordianView(accordianView: MKAccordianView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func accordionView(accordionView: MKAccordionView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
     }
     
-    func accordianView(accordianView: MKAccordianView, heightForHeaderInSection section: Int) -> CGFloat {
+    func accordionView(accordionView: MKAccordionView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
-    func accordianView(accordianView: MKAccordianView, viewForHeaderInSection section: Int, isSectionOpen sectionOpen: Bool) -> UIView? {
+    func accordionView(accordionView: MKAccordionView, viewForHeaderInSection section: Int, isSectionOpen sectionOpen: Bool) -> UIView? {
      
-        var view : UIView! = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordianView.bounds), 50))
+        var view : UIView! = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordionView.bounds), 50))
 
         // Background Image
         var bgImageView : UIImageView = UIImageView(frame: view.bounds)
@@ -67,23 +67,23 @@ extension ViewController : MKAccordianViewDelegate {
     }
 }
 
-// MARK: - Implemention of MKAccordianViewDatasource method
-extension ViewController : MKAccordianViewDatasource {
+// MARK: - Implemention of MKAccordionViewDatasource method
+extension ViewController : MKAccordionViewDatasource {
     
-    func numberOfSectionsInAccordianView(accordianView: MKAccordianView) -> Int {
+    func numberOfSectionsInAccordionView(accordionView: MKAccordionView) -> Int {
         return 5 //TODO: count of section array
     }
     
-    func accordianView(accordianView: MKAccordianView, numberOfRowsInSection section: Int) -> Int {
+    func accordionView(accordionView: MKAccordionView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
     
-    func accordianView(accordianView: MKAccordianView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func accordionView(accordionView: MKAccordionView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell? = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: nil)
         //cell?.imageView = UIImageView(image: UIImage(named: "lightGrayBarWithBluestripe"))
         
         // Background view
-        var bgView : UIView? = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordianView.bounds), 50))
+        var bgView : UIView? = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordionView.bounds), 50))
         var bgImageView : UIImageView! = UIImageView(image: UIImage(named: "lightGrayBarWithBluestripe"))
         bgImageView.frame = (bgView?.bounds)!
         bgImageView.contentMode = UIViewContentMode.ScaleToFill

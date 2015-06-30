@@ -72,6 +72,8 @@ view.addSubview(accordionView)
 ```
 [Find it difficult to implement?](http://innofied.com/accordion-view-ios)
 
+# License
+AccordianView is under MIT license so feel free to use it!
 
 # Author
 Created by [Milan Kamilya](https://github.com/milankamilya). Please feel free to drop an email if you have any question.

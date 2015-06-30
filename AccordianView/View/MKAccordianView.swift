@@ -3,7 +3,7 @@
 //  AccrodianView
 //
 //  Created by Milan Kamilya on 26/06/15.
-//  Copyright (c) 2015 innofied. All rights reserved.
+//  Copyright (c) 2015 Milan Kamilya. All rights reserved.
 //
 
 import UIKit
@@ -16,10 +16,17 @@ import Foundation
 //
 
 
-
+// MARK: - MKAccordianViewDelegate
 @objc protocol MKAccordianViewDelegate : NSObjectProtocol {
     
+    /*!
+    Description
     
+    :param: accordianView accordianView description
+    :param: indexPath     indexPath description
+    
+    :returns: return value description
+    */
     optional func accordianView(accordianView: MKAccordianView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     optional func accordianView(accordianView: MKAccordianView, heightForHeaderInSection section: Int) -> CGFloat
     optional func accordianView(accordianView: MKAccordianView, heightForFooterInSection section: Int) -> CGFloat
@@ -40,6 +47,7 @@ import Foundation
     optional func accordianView(accordianView: MKAccordianView, viewForFooterInSection section: Int, isSectionOpen sectionOpen: Bool) -> UIView?
 }
 
+// MARK: - MKAccordianViewDatasource
 @objc protocol MKAccordianViewDatasource : NSObjectProtocol {
     
     func accordianView(accordianView: MKAccordianView, numberOfRowsInSection section: Int) -> Int
@@ -53,6 +61,7 @@ import Foundation
     
 }
 
+// MARK: - MKAccordianView Main Definition
 class MKAccordianView: UIView {
     
     var dataSource: MKAccordianViewDatasource?
@@ -97,6 +106,8 @@ class MKAccordianView: UIView {
     }
 }
 
+
+// MARK: - Implemention of UITableViewDelegate methods
 extension MKAccordianView : UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -181,6 +192,7 @@ extension MKAccordianView : UITableViewDelegate {
     
 }
 
+// MARK: - Implemention of UITableViewDataSource methods
 extension MKAccordianView : UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

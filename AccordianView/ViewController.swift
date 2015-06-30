@@ -43,9 +43,22 @@ extension ViewController : MKAccordianViewDelegate {
      
         var view : UIView! = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordianView.bounds), 50))
 
+        // Background Image
         var bgImageView : UIImageView = UIImageView(frame: view.bounds)
         bgImageView.image = UIImage(named: ( sectionOpen ? "grayBarSelected" : "grayBar"))!
         view.addSubview(bgImageView)
+        
+        // Arrow Image
+        var arrowImageView : UIImageView = UIImageView(frame: CGRectMake(15, 15, 20, 20))
+        arrowImageView.image = UIImage(named: ( sectionOpen ? "close" : "open"))!
+        view.addSubview(arrowImageView)
+        
+        
+        // Title Label
+        var titleLabel : UILabel = UILabel(frame: CGRectMake(50, 0, CGRectGetWidth(view.bounds) - 120, CGRectGetHeight(view.bounds)))
+        titleLabel.text = "Section \(section)"
+        titleLabel.textColor = UIColor.whiteColor()
+        view.addSubview(titleLabel)
         
         return view
         
@@ -63,9 +76,21 @@ extension ViewController : MKAccordianViewDatasource {
     }
     
     func accordianView(accordianView: MKAccordianView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = "Row \(indexPath.row)"
-        return cell
+        var cell : UITableViewCell? = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: nil)
+        //cell?.imageView = UIImageView(image: UIImage(named: "lightGrayBarWithBluestripe"))
+        
+        // Background view
+        var bgView : UIView? = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordianView.bounds), 50))
+        var bgImageView : UIImageView! = UIImageView(image: UIImage(named: "lightGrayBarWithBluestripe"))
+        bgImageView.frame = (bgView?.bounds)!
+        bgImageView.contentMode = UIViewContentMode.ScaleToFill
+        bgView?.addSubview(bgImageView)
+        cell?.backgroundView = bgView
+        
+        // You can assign cell.selectedBackgroundView also for selected mode
+        
+        cell?.textLabel?.text = "Row \(indexPath.row)"
+        return cell!
     }
     
 }

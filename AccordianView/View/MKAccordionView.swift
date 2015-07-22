@@ -133,28 +133,44 @@ extension MKAccordionView : UITableViewDelegate {
             selection = delegate?.accordionView!(self, shouldHighlightRowAtIndexPath: indexPath)
         }
         
-        return true;
+        return selection
     }
     func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if (delegate?.respondsToSelector(Selector("accordionView:didHighlightRowAtIndexPath:")))!{
+            delegate?.accordionView!(self, didHighlightRowAtIndexPath: indexPath)
+        }
     }
     func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if (delegate?.respondsToSelector(Selector("accordionView:didUnhighlightRowAtIndexPath:")))!{
+            delegate?.accordionView!(self, didUnhighlightRowAtIndexPath: indexPath)
+        }
     }
     
     // Called before the user changes the selection. Return a new indexPath, or nil, to change the proposed selection.
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        return indexPath;
+        var indexPathSelection: NSIndexPath?
+        if (delegate?.respondsToSelector(Selector("accordionView:willSelectRowAtIndexPath:")))!{
+            indexPathSelection = delegate?.accordionView!(self, willSelectRowAtIndexPath: indexPath)
+        }
+        return indexPathSelection;
     }
     func tableView(tableView: UITableView, willDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        return indexPath;
+        var indexPathSelection: NSIndexPath?
+        if (delegate?.respondsToSelector(Selector("accordionView:willDeselectRowAtIndexPath:")))!{
+            indexPathSelection = delegate?.accordionView!(self, willDeselectRowAtIndexPath: indexPath)
+        }
+        return indexPathSelection;
     }
     // Called after the user changes the selection.
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if (delegate?.respondsToSelector(Selector("accordionView:didSelectRowAtIndexPath:")))!{
+            delegate?.accordionView!(self, didSelectRowAtIndexPath: indexPath)
+        }
     }
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if (delegate?.respondsToSelector(Selector("accordionView:didDeselectRowAtIndexPath:")))!{
+            delegate?.accordionView!(self, didDeselectRowAtIndexPath: indexPath)
+        }
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

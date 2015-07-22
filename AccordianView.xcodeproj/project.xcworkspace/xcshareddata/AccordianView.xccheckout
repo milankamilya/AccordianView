@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>3C030C84-83A3-42D0-B19D-1178244B74A1</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>AccordianView</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A511BC764BFB4FC6F8BC976C03BB4D82075485FB</key>
 		<string>https://github.com/milankamilya/AccordianView.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>AccordianView.xcodeproj/project.xcworkspace</string>
+	<string>AccordianView.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A511BC764BFB4FC6F8BC976C03BB4D82075485FB</key>

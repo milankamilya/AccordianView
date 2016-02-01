@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var accordionView : MKAccordionView = MKAccordionView(frame: CGRectMake(0, 22, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)));
+        let accordionView : MKAccordionView = MKAccordionView(frame: CGRectMake(0, 22, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)));
         accordionView.delegate = self;
         accordionView.dataSource = self;
         view.addSubview(accordionView);
@@ -43,21 +43,21 @@ extension ViewController : MKAccordionViewDelegate {
     
     func accordionView(accordionView: MKAccordionView, viewForHeaderInSection section: Int, isSectionOpen sectionOpen: Bool) -> UIView? {
      
-        var view : UIView! = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordionView.bounds), 50))
+        let view : UIView! = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordionView.bounds), 50))
 
         // Background Image
-        var bgImageView : UIImageView = UIImageView(frame: view.bounds)
+        let bgImageView : UIImageView = UIImageView(frame: view.bounds)
         bgImageView.image = UIImage(named: ( sectionOpen ? "grayBarSelected" : "grayBar"))!
         view.addSubview(bgImageView)
         
         // Arrow Image
-        var arrowImageView : UIImageView = UIImageView(frame: CGRectMake(15, 15, 20, 20))
+        let arrowImageView : UIImageView = UIImageView(frame: CGRectMake(15, 15, 20, 20))
         arrowImageView.image = UIImage(named: ( sectionOpen ? "close" : "open"))!
         view.addSubview(arrowImageView)
         
         
         // Title Label
-        var titleLabel : UILabel = UILabel(frame: CGRectMake(50, 0, CGRectGetWidth(view.bounds) - 120, CGRectGetHeight(view.bounds)))
+        let titleLabel : UILabel = UILabel(frame: CGRectMake(50, 0, CGRectGetWidth(view.bounds) - 120, CGRectGetHeight(view.bounds)))
         titleLabel.text = "Process no: \(section)"
         titleLabel.textColor = UIColor.whiteColor()
         view.addSubview(titleLabel)
@@ -80,12 +80,12 @@ extension ViewController : MKAccordionViewDatasource {
     }
     
     func accordionView(accordionView: MKAccordionView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell : UITableViewCell? = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: nil)
+        let cell : UITableViewCell? = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: nil)
         //cell?.imageView = UIImageView(image: UIImage(named: "lightGrayBarWithBluestripe"))
         
         // Background view
-        var bgView : UIView? = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordionView.bounds), 50))
-        var bgImageView : UIImageView! = UIImageView(image: UIImage(named: "lightGrayBarWithBluestripe"))
+        let bgView : UIView? = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(accordionView.bounds), 50))
+        let bgImageView : UIImageView! = UIImageView(image: UIImage(named: "lightGrayBarWithBluestripe"))
         bgImageView.frame = (bgView?.bounds)!
         bgImageView.contentMode = UIViewContentMode.ScaleToFill
         bgView?.addSubview(bgImageView)
@@ -95,6 +95,12 @@ extension ViewController : MKAccordionViewDatasource {
         
         cell?.textLabel?.text = "          subProcess no: \(indexPath.row)"
         return cell!
+    }
+    
+    func accordionView(accordionView: MKAccordionView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        print("accordionView(accordionView: MKAccordionView, didSelectRowAtIndexPath")
+        
     }
     
 }

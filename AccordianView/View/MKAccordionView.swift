@@ -66,15 +66,15 @@ class MKAccordionView: UIView {
         
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func sectionHeaderTapped(recognizer: UITapGestureRecognizer) {
-        println("Tapping working")
-        println(recognizer.view?.tag)
+        print("Tapping working")
+        print(recognizer.view?.tag)
         
-        var indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(recognizer.view?.tag as Int!)!)
+        let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(recognizer.view?.tag as Int!)!)
         if (indexPath.row == 0) {
             
             var collapsed : Bool! = arrayOfBool?.objectAtIndex(indexPath.section).boolValue
@@ -83,8 +83,8 @@ class MKAccordionView: UIView {
             arrayOfBool?.replaceObjectAtIndex(indexPath.section, withObject: NSNumber(bool: collapsed))
             
             //reload specific section animated
-            var range = NSMakeRange(indexPath.section, 1)
-            var sectionToReload = NSIndexSet(indexesInRange: range)
+            let range = NSMakeRange(indexPath.section, 1)
+            let sectionToReload = NSIndexSet(indexesInRange: range)
             tableView?.reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
         }
         
@@ -98,7 +98,7 @@ extension MKAccordionView : UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var height : CGFloat! = 0.0
         
-        var collapsed: Bool! = arrayOfBool?.objectAtIndex(indexPath.section).boolValue
+        let collapsed: Bool! = arrayOfBool?.objectAtIndex(indexPath.section).boolValue
 
         if collapsed! {
             if (delegate?.respondsToSelector(Selector("accordionView:heightForRowAtIndexPath:")))! {
@@ -128,7 +128,7 @@ extension MKAccordionView : UITableViewDelegate {
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         
-        var selection : Bool! = false
+        var selection : Bool! = true
         if (delegate?.respondsToSelector(Selector("accordionView:shouldHighlightRowAtIndexPath:")))!{
             selection = delegate?.accordionView!(self, shouldHighlightRowAtIndexPath: indexPath)
         }
@@ -148,14 +148,14 @@ extension MKAccordionView : UITableViewDelegate {
     
     // Called before the user changes the selection. Return a new indexPath, or nil, to change the proposed selection.
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        var indexPathSelection: NSIndexPath?
+        var indexPathSelection: NSIndexPath? = indexPath
         if (delegate?.respondsToSelector(Selector("accordionView:willSelectRowAtIndexPath:")))!{
             indexPathSelection = delegate?.accordionView!(self, willSelectRowAtIndexPath: indexPath)
         }
         return indexPathSelection;
     }
     func tableView(tableView: UITableView, willDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        var indexPathSelection: NSIndexPath?
+        var indexPathSelection: NSIndexPath? = indexPath
         if (delegate?.respondsToSelector(Selector("accordionView:willDeselectRowAtIndexPath:")))!{
             indexPathSelection = delegate?.accordionView!(self, willDeselectRowAtIndexPath: indexPath)
         }
@@ -178,7 +178,7 @@ extension MKAccordionView : UITableViewDelegate {
         var view : UIView! = nil
         if (delegate?.respondsToSelector(Selector("accordionView:viewForHeaderInSection:isSectionOpen:")))! {
             
-            var collapsed: Bool! = arrayOfBool?.objectAtIndex(section).boolValue
+            let collapsed: Bool! = arrayOfBool?.objectAtIndex(section).boolValue
             
             view = delegate?.accordionView!(self, viewForHeaderInSection: section, isSectionOpen: collapsed)
             view.tag = section;
@@ -200,7 +200,7 @@ extension MKAccordionView : UITableViewDataSource {
         
         var no : Int! = 0
         
-        var collapsed: Bool! = arrayOfBool?.objectAtIndex(section).boolValue
+        let collapsed: Bool! = arrayOfBool?.objectAtIndex(section).boolValue
 
         if collapsed! {
         
@@ -229,7 +229,7 @@ extension MKAccordionView : UITableViewDataSource {
             
             if arrayOfBool == nil {
                 arrayOfBool = NSMutableArray()
-                var sections : Int! = numberOfSections - 1
+                let sections : Int! = numberOfSections - 1
                 for _ in 0...sections {
                     arrayOfBool?.addObject(NSNumber(bool: false))
                 }

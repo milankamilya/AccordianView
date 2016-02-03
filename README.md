@@ -77,4 +77,4 @@ AccordianView is under MIT license so feel free to use it!
 
 # Author
 Created by [Milan Kamilya](https://github.com/milankamilya). Please feel free to drop an email if you have any question.
-milankamilya@gmail.com  or  tweet me [@Milan_Kamilya](https://twitter.com/Milan_Kamilya) 
+milan.kamilya@innofied.com  or  tweet me [@Milan_Kamilya](https://twitter.com/Milan_Kamilya) 

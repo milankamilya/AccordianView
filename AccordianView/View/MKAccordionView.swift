@@ -166,11 +166,14 @@ extension MKAccordionView : UITableViewDelegate {
         if (delegate?.respondsToSelector(Selector("accordionView:didSelectRowAtIndexPath:")))!{
             delegate?.accordionView!(self, didSelectRowAtIndexPath: indexPath)
         }
+        print("accordionView:didSelectRowAtIndexPath: Section::\(indexPath.section) Row::\(indexPath.row)")
     }
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         if (delegate?.respondsToSelector(Selector("accordionView:didDeselectRowAtIndexPath:")))!{
             delegate?.accordionView!(self, didDeselectRowAtIndexPath: indexPath)
         }
+        print("accordionView:didDeselectRowAtIndexPath: Section::\(indexPath.section) Row::\(indexPath.row)")
+
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

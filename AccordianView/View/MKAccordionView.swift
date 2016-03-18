@@ -53,15 +53,24 @@ class MKAccordionView: UIView {
     var delegate: MKAccordionViewDelegate?
     var tableView : UITableView?
     
+    /// If you want to collapse other open sections when a single section get clicked, set true to isCollapsedAllWhenOneIsOpen.
+    var isCollapsedAllWhenOneIsOpen : Bool? = false
+    
+    
+    
     private var arrayOfBool : NSMutableArray?
+    private var previousOpenedSection : Int? = -1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        tableView = UITableView(frame: frame)
+        tableView = UITableView(frame: self.bounds)
         tableView?.delegate = self;
         tableView?.dataSource = self;
         tableView?.alwaysBounceVertical = true
+        tableView?.backgroundColor = UIColor.clearColor()
+        
+        
         self.addSubview(tableView!);
         
         
@@ -81,12 +90,33 @@ class MKAccordionView: UIView {
             var collapsed : Bool! = arrayOfBool?.objectAtIndex(indexPath.section).boolValue
             collapsed       = !collapsed;
             
+            if isCollapsedAllWhenOneIsOpen! {
+                
+                if previousOpenedSection != -1 {
+                    //reload previous opened section animated
+                    arrayOfBool?.replaceObjectAtIndex(previousOpenedSection!, withObject: NSNumber(bool: false))
+
+                    let range = NSMakeRange(previousOpenedSection!, 1)
+                    let sectionToReload = NSIndexSet(indexesInRange: range)
+                    tableView?.reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
+                    
+                }
+            }
+            
             arrayOfBool?.replaceObjectAtIndex(indexPath.section, withObject: NSNumber(bool: collapsed))
+
             
             //reload specific section animated
             let range = NSMakeRange(indexPath.section, 1)
             let sectionToReload = NSIndexSet(indexesInRange: range)
             tableView?.reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
+            
+            
+            if collapsed! {
+                previousOpenedSection = (recognizer.view?.tag as Int!)!
+            } else {
+                previousOpenedSection = -1
+            }
         }
         
     }
@@ -195,6 +225,18 @@ extension MKAccordionView : UITableViewDelegate {
         return view
     }
     
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        var view : UIView! = nil
+        if (delegate?.respondsToSelector(Selector("accordionView:viewForFooterInSection:isSectionOpen:")))! {
+            
+            let collapsed: Bool! = false
+            view = delegate?.accordionView!(self, viewForFooterInSection: section, isSectionOpen: collapsed)
+            
+        }
+        
+        return view
+    }
 }
 
 // MARK: - Implemention of UITableViewDataSource methods

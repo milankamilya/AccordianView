@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let accordionView : MKAccordionView = MKAccordionView(frame: CGRectMake(0, 22, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds)));
+        let accordionView : MKAccordionView = MKAccordionView(frame: CGRectMake(0, 22, CGRectGetWidth(view.bounds), CGRectGetHeight(view.bounds) - 44));
         accordionView.delegate = self;
         accordionView.dataSource = self;
         view.addSubview(accordionView);

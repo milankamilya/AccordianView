@@ -61,6 +61,7 @@ class MKAccordionView: UIView {
         tableView = UITableView(frame: frame)
         tableView?.delegate = self;
         tableView?.dataSource = self;
+        tableView?.alwaysBounceVertical = true
         self.addSubview(tableView!);
         
         

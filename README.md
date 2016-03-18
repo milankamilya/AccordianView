@@ -3,7 +3,7 @@ Reusable AccordianView in swift. It will take less than 2 min to integrate it wi
 
 Click on this GIF to have a full look on how the pull project looks like
 
-[![YouTube Link](https://raw.githubusercontent.com/milankamilya/AccordianView/master/accordionView.gif)](https://www.youtube.com/watch?v=u34Fw9biD3k)[![YouTube Link](https://raw.githubusercontent.com/milankamilya/AccordianView/master/AccordionViewSample2.gif)](https://www.youtube.com/watch?v=u34Fw9biD3k)
+[![YouTube Link](https://raw.githubusercontent.com/milankamilya/AccordianView/master/accordionView.gif)](https://www.youtube.com/watch?v=u34Fw9biD3k)[![YouTube Link](https://raw.githubusercontent.com/milankamilya/AccordianView/master/AccordionViewSample3.gif)](https://www.youtube.com/watch?v=u34Fw9biD3k)
 
 # Installation 
 You need do it manually. Download and add the following file to your project.

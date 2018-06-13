@@ -189,6 +189,7 @@
 				TargetAttributes = {
 					8C54EC581B4130FD00EBC56B = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0930;
 					};
 					8C54EC6D1B4130FD00EBC56B = {
 						CreatedOnToolsVersion = 6.3;
@@ -381,7 +382,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -393,7 +395,8 @@
 				INFOPLIST_FILE = AccordianView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

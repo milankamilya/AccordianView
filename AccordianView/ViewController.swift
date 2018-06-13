@@ -136,7 +136,7 @@ extension ViewController : MKAccordionViewDelegate {
           let titleLabel : UILabel = UILabel(frame: CGRect(x: 23, y: 0, width: view.bounds.width - 120, height: view.bounds.height))
           titleLabel.text = "Process no: \(section)"
           titleLabel.textColor = UIColor.black
-          titleLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightRegular)
+          titleLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
             view.addSubview(titleLabel)
             
           return view
@@ -196,7 +196,7 @@ extension ViewController : MKAccordionViewDatasource {
                 // You can assign cell.selectedBackgroundView also for selected mode
                 
               cell.textLabel?.text = "subProcess no: \(indexPath.row)"
-              cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFontWeightThin)
+              cell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.thin)
               return cell
         }
         

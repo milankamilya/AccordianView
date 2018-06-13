@@ -80,7 +80,7 @@ class MKAccordionView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func sectionHeaderTapped(_ recognizer: UITapGestureRecognizer) {
+    @objc func sectionHeaderTapped(_ recognizer: UITapGestureRecognizer) {
         print("Tapping working")
         print(recognizer.view?.tag ?? "")
       guard let tag = recognizer.view?.tag else { return }

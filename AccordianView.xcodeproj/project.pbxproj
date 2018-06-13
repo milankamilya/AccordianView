@@ -90,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				8C54EC7F1B41312C00EBC56B /* View */,
-				8C54EC7E1B41311A00EBC56B /* Model */,
 				8C54EC5E1B4130FD00EBC56B /* AppDelegate.swift */,
 				8C54EC601B4130FD00EBC56B /* ViewController.swift */,
 				8C54EC621B4130FD00EBC56B /* Main.storyboard */,
@@ -129,13 +128,6 @@
 				8C54EC731B4130FD00EBC56B /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8C54EC7E1B41311A00EBC56B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		8C54EC7F1B41312C00EBC56B /* View */ = {
@@ -389,6 +381,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -400,6 +393,7 @@
 				INFOPLIST_FILE = AccordianView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

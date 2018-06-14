@@ -154,9 +154,10 @@ extension MKAccordionView : UITableViewDelegate {
     
   func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         
-        var selection : Bool! = true
-        selection = delegate?.accordionView?(self, shouldHighlightRowAtIndexPath: indexPath)
-        return selection
+      guard let selection = delegate?.accordionView?(self, shouldHighlightRowAtIndexPath: indexPath) else {
+        return false
+      }
+      return selection
     }
   func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         delegate?.accordionView?(self, didHighlightRowAtIndexPath: indexPath)

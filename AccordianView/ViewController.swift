@@ -41,7 +41,7 @@ class ViewController: UIViewController {
 // MARK: - Implemention of MKAccordionViewDelegate method
 extension ViewController : MKAccordionViewDelegate {
     
-  func accordionView(_ accordionView: MKAccordionView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+  func accordionView(_ accordionView: MKAccordionView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch typeOfAccordianView {
             case .Classic :
@@ -51,7 +51,7 @@ extension ViewController : MKAccordionViewDelegate {
         }
     }
     
-    func accordionView(_ accordionView: MKAccordionView, heightForHeaderInSection section: Int) -> CGFloat {
+    func accordionView(_ accordionView: MKAccordionView, heightForHeaderIn section: Int) -> CGFloat {
         switch typeOfAccordianView {
         case .Classic :
             return 50
@@ -60,7 +60,7 @@ extension ViewController : MKAccordionViewDelegate {
         }
     }
     
-    func accordionView(_ accordionView: MKAccordionView, heightForFooterInSection section: Int) -> CGFloat {
+    func accordionView(_ accordionView: MKAccordionView, heightForFooterIn section: Int) -> CGFloat {
         switch typeOfAccordianView {
         case .Classic :
             return 0
@@ -69,13 +69,13 @@ extension ViewController : MKAccordionViewDelegate {
         }
     }
     
-    func accordionView(_ accordionView: MKAccordionView, viewForHeaderInSection section: Int, isSectionOpen sectionOpen: Bool) -> UIView? {
+    func accordionView(_ accordionView: MKAccordionView, viewForHeaderIn section: Int, isSectionOpen sectionOpen: Bool) -> UIView? {
      
         return getHeaderViewForAccordianType(typeOfAccordianView, accordionView: accordionView, section: section,  isSectionOpen: sectionOpen);
         
     }
     
-    func accordionView(_ accordionView: MKAccordionView, viewForFooterInSection section: Int, isSectionOpen sectionOpen: Bool) -> UIView? {
+    func accordionView(_ accordionView: MKAccordionView, viewForFooterIn section: Int, isSectionOpen sectionOpen: Bool) -> UIView? {
         
         switch typeOfAccordianView {
         case .Classic :
@@ -152,23 +152,23 @@ extension ViewController : MKAccordionViewDatasource {
         return 5 //TODO: count of section array
     }
     
-    func accordionView(_ accordionView: MKAccordionView, numberOfRowsInSection section: Int) -> Int {
+    func accordionView(_ accordionView: MKAccordionView, numberOfRowsIn section: Int) -> Int {
         return 5
     }
     
-    func accordionView(_ accordionView: MKAccordionView , cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func accordionView(_ accordionView: MKAccordionView , cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return getCellForAccordionType(typeOfAccordianView, accordionView: accordionView, cellForRowAtIndexPath: indexPath)
+        return getCellForAccordionType(typeOfAccordianView, accordionView: accordionView, cellForRowAt: indexPath)
     }
     
-    func accordionView(_ accordionView: MKAccordionView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func accordionView(_ accordionView: MKAccordionView, didSelectRowAt indexPath: IndexPath) {
         
         print("accordionView(_ accordionView: MKAccordionView, didSelectRowAtIndexPath")
         
     }
     
     
-    func getCellForAccordionType(_ accordionType: TypeOfAccordianView, accordionView: MKAccordionView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func getCellForAccordionType(_ accordionType: TypeOfAccordianView, accordionView: MKAccordionView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch accordionType {
             

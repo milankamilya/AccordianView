@@ -12,37 +12,37 @@ import Foundation
 // MARK: - MKAccordionViewDelegate
 @objc protocol MKAccordionViewDelegate : NSObjectProtocol {
     
-  @objc optional func accordionView(_ accordionView: MKAccordionView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat
-  @objc optional func accordionView(_ accordionView: MKAccordionView, heightForHeaderInSection section: Int) -> CGFloat
-  @objc optional func accordionView(_ accordionView: MKAccordionView, heightForFooterInSection section: Int) -> CGFloat
+  @objc optional func accordionView(_ accordionView: MKAccordionView, heightForRowAt indexPath: IndexPath) -> CGFloat
+  @objc optional func accordionView(_ accordionView: MKAccordionView, heightForHeaderIn section: Int) -> CGFloat
+  @objc optional func accordionView(_ accordionView: MKAccordionView, heightForFooterIn section: Int) -> CGFloat
     
-  @objc optional func accordionView(_ accordionView: MKAccordionView, shouldHighlightRowAtIndexPath indexPath: IndexPath) -> Bool
-  @objc optional func accordionView(_ accordionView: MKAccordionView, didHighlightRowAtIndexPath indexPath: IndexPath)
-  @objc optional func accordionView(_ accordionView: MKAccordionView, didUnhighlightRowAtIndexPath indexPath: IndexPath)
+  @objc optional func accordionView(_ accordionView: MKAccordionView, shouldHighlightRowAt indexPath: IndexPath) -> Bool
+  @objc optional func accordionView(_ accordionView: MKAccordionView, didHighlightRowAt indexPath: IndexPath)
+  @objc optional func accordionView(_ accordionView: MKAccordionView, didUnhighlightRowAt indexPath: IndexPath)
     
     // Called before the user changes the selection. Return a new indexPath, or nil, to change the proposed selection.
-  @objc optional func accordionView(_ accordionView: MKAccordionView, willSelectRowAtIndexPath indexPath: IndexPath) -> IndexPath?
-  @objc optional func accordionView(_ accordionView: MKAccordionView, willDeselectRowAtIndexPath indexPath: IndexPath) -> IndexPath?
+  @objc optional func accordionView(_ accordionView: MKAccordionView, willSelectRowAt indexPath: IndexPath) -> IndexPath?
+  @objc optional func accordionView(_ accordionView: MKAccordionView, willDeselectRowAt indexPath: IndexPath) -> IndexPath?
     // Called after the user changes the selection.
-  @objc optional func accordionView(_ accordionView: MKAccordionView, didSelectRowAtIndexPath indexPath: IndexPath)
-  @objc optional func accordionView(_ accordionView: MKAccordionView, didDeselectRowAtIndexPath indexPath: IndexPath)
+  @objc optional func accordionView(_ accordionView: MKAccordionView, didSelectRowAt indexPath: IndexPath)
+  @objc optional func accordionView(_ accordionView: MKAccordionView, didDeselectRowAt indexPath: IndexPath)
     
     
-  @objc optional func accordionView(_ accordionView: MKAccordionView, viewForHeaderInSection section: Int, isSectionOpen sectionOpen: Bool) -> UIView?
-  @objc optional func accordionView(_ accordionView: MKAccordionView, viewForFooterInSection section: Int, isSectionOpen sectionOpen: Bool) -> UIView?
+  @objc optional func accordionView(_ accordionView: MKAccordionView, viewForHeaderIn section: Int, isSectionOpen sectionOpen: Bool) -> UIView?
+  @objc optional func accordionView(_ accordionView: MKAccordionView, viewForFooterIn section: Int, isSectionOpen sectionOpen: Bool) -> UIView?
 }
 
 // MARK: - MKAccordionViewDatasource
 @objc protocol MKAccordionViewDatasource : NSObjectProtocol {
     
-    func accordionView(_ accordionView: MKAccordionView, numberOfRowsInSection section: Int) -> Int
+    func accordionView(_ accordionView: MKAccordionView, numberOfRowsIn section: Int) -> Int
     
-    func accordionView(_ accordionView: MKAccordionView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell
+    func accordionView(_ accordionView: MKAccordionView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     
   @objc optional func numberOfSectionsInAccordionView(_ accordionView: MKAccordionView) -> Int // Default is 1 if not implemented
     
-  @objc optional func accordionView(_ accordionView: MKAccordionView, titleForHeaderInSection section: Int) -> String? // fixed font style. use custom view (UILabel) if you want something different
-  @objc optional func accordionView(_ accordionView: MKAccordionView, titleForFooterInSection section: Int) -> String?
+  @objc optional func accordionView(_ accordionView: MKAccordionView, titleForHeaderIn section: Int) -> String? // fixed font style. use custom view (UILabel) if you want something different
+  @objc optional func accordionView(_ accordionView: MKAccordionView, titleForFooterIn section: Int) -> String?
     
 }
 
@@ -134,7 +134,7 @@ extension MKAccordionView : UITableViewDelegate {
       let collapsed: Bool! = (arrayOfBool?.object(at: indexPath.section) as AnyObject).boolValue
 
       if collapsed! {
-        height = delegate?.accordionView?(self, heightForRowAtIndexPath: indexPath)
+        height = delegate?.accordionView?(self, heightForRowAt: indexPath)
       }
     
       return height
@@ -142,47 +142,46 @@ extension MKAccordionView : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         var height : CGFloat! = 0.0
-        height = delegate?.accordionView?(self, heightForHeaderInSection: section)
+        height = delegate?.accordionView?(self, heightForHeaderIn: section)
         return height
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         var height : CGFloat! = 0.0
-        height = delegate?.accordionView?(self, heightForFooterInSection: section)
+        height = delegate?.accordionView?(self, heightForFooterIn: section)
         return height
     }
     
   func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        
-        var selection : Bool! = true
-        selection = delegate?.accordionView?(self, shouldHighlightRowAtIndexPath: indexPath)
-        return selection
+    
+    guard let selection = delegate?.accordionView?(self, shouldHighlightRowAt: indexPath) else { return false }
+    return selection
     }
   func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        delegate?.accordionView?(self, didHighlightRowAtIndexPath: indexPath)
+        delegate?.accordionView?(self, didHighlightRowAt: indexPath)
     }
   func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        delegate?.accordionView?(self, didUnhighlightRowAtIndexPath: indexPath)
+        delegate?.accordionView?(self, didUnhighlightRowAt: indexPath)
     }
     
     // Called before the user changes the selection. Return a new indexPath, or nil, to change the proposed selection.
   func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         var indexPathSelection: IndexPath? = indexPath
-        indexPathSelection = delegate?.accordionView!(self, willSelectRowAtIndexPath: indexPath)
+        indexPathSelection = delegate?.accordionView!(self, willSelectRowAt: indexPath)
         return indexPathSelection;
     }
   func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
         var indexPathSelection: IndexPath? = indexPath
-        indexPathSelection = delegate?.accordionView?(self, willDeselectRowAtIndexPath: indexPath)
+        indexPathSelection = delegate?.accordionView?(self, willDeselectRowAt: indexPath)
         return indexPathSelection;
     }
     // Called after the user changes the selection.
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.accordionView?(self, didSelectRowAtIndexPath: indexPath)
+        delegate?.accordionView?(self, didSelectRowAt: indexPath)
         print("accordionView:didSelectRowAtIndexPath: Section::\(indexPath.section) Row::\(indexPath.row)")
     }
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        delegate?.accordionView?(self, didDeselectRowAtIndexPath: indexPath)
+        delegate?.accordionView?(self, didDeselectRowAt: indexPath)
         print("accordionView:didDeselectRowAtIndexPath: Section::\(indexPath.section) Row::\(indexPath.row)")
     }
     
@@ -192,7 +191,7 @@ extension MKAccordionView : UITableViewDelegate {
       
     let collapsed: Bool! = (arrayOfBool?.object(at: section) as AnyObject).boolValue
       
-        view = delegate?.accordionView?(self, viewForHeaderInSection: section, isSectionOpen: collapsed)
+        view = delegate?.accordionView?(self, viewForHeaderIn: section, isSectionOpen: collapsed)
         view.tag = section;
       
         // tab recognizer
@@ -207,7 +206,7 @@ extension MKAccordionView : UITableViewDelegate {
       var view : UIView! = nil
   
       let collapsed: Bool! = false
-      view = delegate?.accordionView?(self, viewForFooterInSection: section, isSectionOpen: collapsed)
+      view = delegate?.accordionView?(self, viewForFooterIn: section, isSectionOpen: collapsed)
     
       return view
     }
@@ -223,14 +222,14 @@ extension MKAccordionView : UITableViewDataSource {
         let collapsed: Bool! = (arrayOfBool?.object(at: section) as AnyObject).boolValue
 
         if collapsed! {
-          no = dataSource?.accordionView(self, numberOfRowsInSection: section)
+          no = dataSource?.accordionView(self, numberOfRowsIn: section)
         }
         
         return no
     }
     
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = dataSource?.accordionView(self, cellForRowAtIndexPath: indexPath)
+      let cell = dataSource?.accordionView(self, cellForRowAt: indexPath)
       assert( cell != nil, "Please set dataSource of MKAccordionView ")
       return cell!
     }
@@ -254,14 +253,14 @@ extension MKAccordionView : UITableViewDataSource {
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
       var title : String! = nil
-      title = dataSource?.accordionView?(self, titleForHeaderInSection: section)
+      title = dataSource?.accordionView?(self, titleForHeaderIn: section)
     
       return title
     }
     
   func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
       var title : String! = nil
-      title = dataSource?.accordionView?(self, titleForFooterInSection: section)
+      title = dataSource?.accordionView?(self, titleForFooterIn: section)
       return title
     }
     

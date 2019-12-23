@@ -81,8 +81,7 @@ class MKAccordionView: UIView {
     }
     
     @objc func sectionHeaderTapped(_ recognizer: UITapGestureRecognizer) {
-        print("Tapping working")
-        print(recognizer.view?.tag ?? "")
+
       guard let tag = recognizer.view?.tag else { return }
         
       let indexPath = IndexPath(row: 0, section: tag)
@@ -141,21 +140,19 @@ extension MKAccordionView : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        var height : CGFloat! = 0.0
-        height = delegate?.accordionView?(self, heightForHeaderIn: section)
+        let height : CGFloat! = delegate?.accordionView?(self, heightForHeaderIn: section) ?? 0.0
         return height
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        var height : CGFloat! = 0.0
-        height = delegate?.accordionView?(self, heightForFooterIn: section)
+        let height : CGFloat! = delegate?.accordionView?(self, heightForFooterIn: section) ?? 0.0
         return height
     }
     
   func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
     
-    guard let selection = delegate?.accordionView?(self, shouldHighlightRowAt: indexPath) else { return false }
-    return selection
+    guard let selection = delegate?.accordionView?(self, shouldHighlightRowAt: indexPath) else { return true }
+        return selection
     }
   func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         delegate?.accordionView?(self, didHighlightRowAt: indexPath)
@@ -166,23 +163,31 @@ extension MKAccordionView : UITableViewDelegate {
     
     // Called before the user changes the selection. Return a new indexPath, or nil, to change the proposed selection.
   func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        var indexPathSelection: IndexPath? = indexPath
-        indexPathSelection = delegate?.accordionView!(self, willSelectRowAt: indexPath)
-        return indexPathSelection;
+    guard let delegate = delegate else {
+        return indexPath
     }
+    if delegate.responds(to: #selector(MKAccordionViewDelegate.accordionView(_:willSelectRowAt:))) {
+        return delegate.accordionView?(self, willSelectRowAt: indexPath)
+    } else {
+        return indexPath
+    }
+  }
   func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-        var indexPathSelection: IndexPath? = indexPath
-        indexPathSelection = delegate?.accordionView?(self, willDeselectRowAt: indexPath)
-        return indexPathSelection;
+    guard let delegate = delegate else {
+        return indexPath
     }
+    if delegate.responds(to: #selector(MKAccordionViewDelegate.accordionView(_:willDeselectRowAt:))) {
+        return delegate.accordionView?(self, willDeselectRowAt: indexPath)
+    } else {
+        return indexPath
+    }
+  }
     // Called after the user changes the selection.
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.accordionView?(self, didSelectRowAt: indexPath)
-        print("accordionView:didSelectRowAtIndexPath: Section::\(indexPath.section) Row::\(indexPath.row)")
     }
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         delegate?.accordionView?(self, didDeselectRowAt: indexPath)
-        print("accordionView:didDeselectRowAtIndexPath: Section::\(indexPath.section) Row::\(indexPath.row)")
     }
     
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
